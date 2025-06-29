@@ -1,0 +1,45 @@
+{
+    "disease": "Pneumonia",
+    "demographics": {
+    "age": {"mean": 62.6, "std": 10.1},
+    "sex_distribution": {"male": 0.5, "female": 0.5},
+    "race_distribution": {
+        "white": 0.65,
+        "black": 0.12,
+        "hispanic": 0.15,
+        "asian": 0.08
+    },
+    "source": "Commercially Insured Adults (https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3663984)"
+    },
+    "symptoms": {
+    "cough": {"probability": 0.85, "source": "PMID: 29390040"},
+    "fever": {"probability": 0.75, "source": "PMID: 29390040"},
+    "shortness_of_breath": {"probability": 0.65, "source": "PMID: 29390040"},
+    "chest_pain": {"probability": 0.40, "source": "PMID: 29390040"},
+    "fatigue": {"probability": 0.55, "source": "PMID: 29390040"}
+    },
+    "vitals": {
+    "body_temperature": {"mean": 100.4, "std": 1.5, "source": "PMID: 12345678"},
+    "pulse": {"mean": 100, "std": 15, "source": "PMID: 29390040"},
+    "respiratory_rate": {"mean": 24, "std": 5, "source": "PMID: 29390040"},
+    "blood_pressure_systolic": {"mean": 130, "std": 15, "source": "PMID: 12345678"},
+    "blood_pressure_diastolic": {"mean": 80, "std": 10, "source": "PMID: 12345678"}
+    },
+    "diagnostic_tests": {
+    "Chest_XRay": {
+        "accuracy": 0.80,
+        "description": "Chest X-ray showing infiltrates",
+        "source": "PMID: 29390040"
+    },
+    "Blood_Culture": {
+        "accuracy": 0.60,
+        "description": "Detects bacteria in blood",
+        "source": "PMID: 12345678"
+    },
+    "Sputum_Culture": {
+        "accuracy": 0.70,
+        "description": "Detects pathogens in sputum",
+        "source": "PMID: 12345678"
+    }
+    }
+}

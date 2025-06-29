@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Medical Simulator Test UI</title>
+  <style>
+    body { font-family: sans-serif; padding: 2em; }
+    button { margin: 0.5em; padding: 0.5em 1em; }
+    #output { white-space: pre-wrap; background: #f0f0f0; padding: 1em; border-radius: 5px; }
+  </style>
+</head>
+<body>
+  <h1>Medical Diagnostic Game - API Tester</h1>
+
+  <button onclick="callNewCase()">Generate New Case</button>
+  <button onclick="callCurrentCase()">Get Current Case</button>
+  <button onclick="callOrderTest()">Order Test</button>
+  <button onclick="callSubmitDiagnosis()">Submit Diagnosis (example: flu)</button>
+  <button onclick="callReset()">Reset Case</button>
+
+  <h3>Output:</h3>
+  <div id="output">Click a button to test an API route.</div>
+
+  <script>
+    function updateOutput(data) {
+      document.getElementById('output').textContent = JSON.stringify(data, null, 2);
+    }
+
+    function callNewCase() {
+      fetch('/api/new_case', {
+        method: 'GET',
+        credentials: 'include'
+      })
+        .then(res => res.json())
+        .then(data => updateOutput(data))
+        .catch(err => updateOutput({ error: err.toString() }));
+    }
+
+    function callCurrentCase() {
+      fetch('/api/current_case')
+        .then(res => res.json())
+        .then(data => updateOutput(data))
+        .catch(err => updateOutput({ error: err.toString() }));
+    }
+
+    function callOrderTest() {
+      fetch('/api/order_test', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ test: 'WBC_Count' })  // You can change test name here
+      })
+        .then(res => res.json())
+        .then(data => updateOutput(data))
+        .catch(err => updateOutput({ error: err.toString() }));
+    }
+
+    function callSubmitDiagnosis() {
+      fetch('/submit_diagnosis', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        credentials: 'include',
+        body: JSON.stringify({ diagnosis: 'Appendicitis' })  // Replace with user input if needed
+      })
+        .then(res => res.json())
+        .then(data => updateOutput(data))
+        .catch(err => updateOutput({ error: err.toString() }));
+    }
+
+    function callReset() {
+      fetch('/api/reset')
+        .then(res => res.json())
+        .then(data => updateOutput(data))
+        .catch(err => updateOutput({ error: err.toString() }));
+    }
+  </script>
+</body>
+</html>

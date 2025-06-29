@@ -1,0 +1,22 @@
+{
+    "case_id": "001",
+    "name": "Alex",
+    "age": 45,
+    "gender": "male",
+    "symptoms": ["chest pain", "shortness of breath", "sweating"],
+    "vitals": {
+      "heart_rate": 105,
+      "blood_pressure": "140/90",
+      "temperature": 98.6
+    },
+    "tests": {
+      "ECG": "ST elevation in leads II, III, aVF",
+      "Troponin": "Elevated"
+    },
+    "diagnosis": "Myocardial Infarction",
+    "explanations": {
+      "chest pain": "Common symptom of heart-related conditions.",
+      "ECG": "ST elevation suggests heart muscle damage.",
+      "Troponin": "Elevated troponin indicates cardiac injury."
+    }
+  }

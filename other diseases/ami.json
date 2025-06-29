@@ -1,0 +1,103 @@
+{
+    "disease": "Acute Mesenteric Ischemia",
+
+    "symptoms": {
+        "abdominal_pain": {"probability": 0.85},
+        "nausea": {"probability": 0.60},
+        "vomiting": {"probability": 0.50},
+        "loss_of_appetite": {"probability": 0.40},
+        "constipation": {"probability": 0.15},
+        "diarrhea": {"probability": 0.15},
+        "pain_migration_to_RLQ": {"probability": 0.075}
+    },
+
+    "vitals": {
+        "body_temperature": {"mean": 37.9, "std": 0.7, "source": "mild fever"},
+        "pulse": {"mean": 110, "std": 20, "source": "tachycardia"},
+        "respiratory_rate": {"mean": 24, "std": 5, "source": "elevated from shock"},
+        "blood_pressure_systolic": {"mean": 105, "std": 20, "source": "mostly normal, maybe hypotensive"},
+        "blood_pressure_diastolic": {"mean": 65, "std": 12, "source": "mostly normal, maybe hypotensive"}
+    },
+
+    "diagnostic_tests": {
+        "Abdominal_Ultrasound": {
+            "Enlarged_Appendix": {
+                "sensitivity": 0.01,
+                "specificity": 0.99
+            },
+            "Appendix_Wall_Thickening": {
+                "sensitivity": 0.01,
+                "specificity": 0.99
+            },
+            "Peri-appendiceal_Fluid": {
+                "sensitivity": 0.01,
+                "specificity": 0.99
+            },
+            "Peri-appendiceal_Fat_Stranding": {
+                "sensitivity": 0.01,
+                "specificity": 0.99
+            },
+            "Appendicolith": {
+                "sensitivity": 0.01,
+                "specificity": 0.99
+            }
+        },
+        "CT_Scan": {
+            "Enlarged_Appendix": {
+                "sensitivity": 0.01,
+                "specificity": 0.99
+            },
+            "Appendix_Wall_Thickening": {
+                "sensitivity": 0.01,
+                "specificity": 0.99
+            },
+            "Peri-appendiceal_Fluid": {
+                "sensitivity": 0.01,
+                "specificity": 0.99
+            },
+            "Peri-appendiceal_Fat_Stranding": {
+                "sensitivity": 0.01,
+                "specificity": 0.99
+            },
+            "Appendicolith": {
+                "sensitivity": 0.01,
+                "specificity": 0.99
+            }
+        },
+        "MRI": {
+            "Enlarged_Appendix": {
+                "sensitivity": 0.01,
+                "specificity": 0.99
+            },
+            "Appendix_Wall_Thickening": {
+                "sensitivity": 0.01,
+                "specificity": 0.99
+            },
+            "Peri-appendiceal_Fluid": {
+                "sensitivity": 0.01,
+                "specificity": 0.99
+            },
+            "Peri-appendiceal_Fat_Stranding": {
+                "sensitivity": 0.01,
+                "specificity": 0.99
+            },
+            "Appendicolith": {
+                "sensitivity": 0.01,
+                "specificity": 0.99
+            }
+        },
+        "WBC_Count": {
+            "sensitivity": 0.70,
+            "specificity": 0.30
+        },
+        "CRP": {
+            "sensitivity": 0.80,
+            "specificity": 0.55,
+            "source": "Oldenburg WA et al. Acute mesenteric ischemia: a clinical review. Arch Intern Med. 2004;164(10): 1054-1062. [PMID: 15184262]"
+        },
+        "Hyponatremia": {
+            "sensitivity": 0.2,
+            "specificity": 0.15
+        }
+    }
+}

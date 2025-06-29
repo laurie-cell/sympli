@@ -1,0 +1,49 @@
+{
+    "disease": "Myocardial Infarction",
+    "demographics": {
+        "age": {"mean": 62.8, "std": 12.6},
+        "sex_distribution": {"male": 0.55, "female": 0.45},
+        "race_distribution": {
+            "white": 0.725,
+            "black": 0.225,
+            "hispanic": 0.075,
+            "asian": 0.025
+        },
+        "source": "ARIC Study & US Census Estimates (https://www.ahajournals.org/doi/full/10.1161/JAHA.122.027851)"
+    },
+    "symptoms": {
+        "angina": {"probability": 0.82, "source": "PMID: 24085485"},
+        "shortness_of_breath": {"probability": 0.35, "source": "PMID: 24344165"},
+        "insomnia": {"probability": 0.05, "source": "PMID: 12345678"},
+        "nausea": {"probability": 0.40, "source": "PMID: 18203634"},
+        "heart_palpitations": {"probability": 0.20, "source": "PMID: 19680218"},
+        "anxiety": {"probability": 0.25, "source": "PMID: 19680218"},
+        "lightheadedness": {"probability": 0.33, "source": "PMID: 24085485"},
+        "pain_back_neck_arms_abdomen": {"probability": 0.60, "source": "PMID: 18203634"},
+        "sweating": {"probability": 0.55, "source": "PMID: 18203634"}
+    },
+    "vitals": {
+        "body_temperature": {"mean": 98.6, "std": 0.5, "source": "PMID: 12345678"},
+        "pulse": {"mean": 90, "std": 20, "source": "PMID: 18203634"},
+        "respiratory_rate": {"mean": 20, "std": 4, "source": "PMID: 12345678"},
+        "blood_pressure_systolic": {"mean": 140, "std": 20, "source": "PMID: 19680218"},
+        "blood_pressure_diastolic": {"mean": 90, "std": 15, "source": "PMID: 19680218"}
+    },
+    "diagnostic_tests": {
+        "ECG": {
+            "accuracy": 0.90,
+            "description": "Electrocardiogram for detecting ischemic changes",
+            "source": "PMID: 18203634"
+        },
+        "Troponin": {
+            "accuracy": 0.95,
+            "description": "Serum cardiac troponin test, highly sensitive",
+            "source": "PMID: 19680218"
+        },
+        "Chest_XRay": {
+            "accuracy": 0.60,
+            "description": "Chest X-ray for complications or differential diagnosis",
+            "source": "PMID: 12345678"
+        }
+    }
+}

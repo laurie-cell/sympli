@@ -1,0 +1,103 @@
+{
+    "disease": "Small Bowel Obstruction",
+
+    "symptoms": {
+        "abdominal_pain": {"probability": 0.925},
+        "nausea": {"probability": 0.80},
+        "vomiting": {"probability": 0.85},
+        "loss_of_appetite": {"probability": 0.50},
+        "constipation": {"probability": 0.50},
+        "diarrhea": {"probability": 0.15},
+        "pain_migration_to_RLQ": {"probability": 0.075}
+    },
+
+    "vitals": {
+        "body_temperature": {"mean": 37.8, "std": 0.5, "source": "mild fever"},
+        "pulse": {"mean": 100, "std": 15, "source": "mild/moderate tachycardia"},
+        "respiratory_rate": {"mean": 22, "std": 4, "source": "slightly faster from pain"},
+        "blood_pressure_systolic": {"mean": 115, "std": 15, "source": "mostly normal"},
+        "blood_pressure_diastolic": {"mean": 70, "std": 10, "source": "mostly normal"}
+    },
+
+    "diagnostic_tests": {
+        "Abdominal_Ultrasound": {
+            "Enlarged_Appendix": {
+                "sensitivity": 0.01,
+                "specificity": 0.99
+            },
+            "Appendix_Wall_Thickening": {
+                "sensitivity": 0.01,
+                "specificity": 0.99
+            },
+            "Peri-appendiceal_Fluid": {
+                "sensitivity": 0.01,
+                "specificity": 0.99
+            },
+            "Peri-appendiceal_Fat_Stranding": {
+                "sensitivity": 0.01,
+                "specificity": 0.99
+            },
+            "Appendicolith": {
+                "sensitivity": 0.01,
+                "specificity": 0.99
+            }
+        },
+        "CT_Scan": {
+            "Enlarged_Appendix": {
+                "sensitivity": 0.01,
+                "specificity": 0.99
+            },
+            "Appendix_Wall_Thickening": {
+                "sensitivity": 0.01,
+                "specificity": 0.99
+            },
+            "Peri-appendiceal_Fluid": {
+                "sensitivity": 0.01,
+                "specificity": 0.99
+            },
+            "Peri-appendiceal_Fat_Stranding": {
+                "sensitivity": 0.01,
+                "specificity": 0.99
+            },
+            "Appendicolith": {
+                "sensitivity": 0.01,
+                "specificity": 0.99
+            }
+        },
+        "MRI": {
+            "Enlarged_Appendix": {
+                "sensitivity": 0.01,
+                "specificity": 0.99
+            },
+            "Appendix_Wall_Thickening": {
+                "sensitivity": 0.01,
+                "specificity": 0.99
+            },
+            "Peri-appendiceal_Fluid": {
+                "sensitivity": 0.01,
+                "specificity": 0.99
+            },
+            "Peri-appendiceal_Fat_Stranding": {
+                "sensitivity": 0.01,
+                "specificity": 0.99
+            },
+            "Appendicolith": {
+                "sensitivity": 0.01,
+                "specificity": 0.99
+            }
+        },
+        "WBC_Count": {
+            "sensitivity": 0.70,
+            "specificity": 0.30
+        },
+        "CRP": {
+            "sensitivity": 0.725,
+            "specificity": 0.60,
+            "source": "Fevang BT et al. C-reactive protein as a predictor of intestinal ischemia in patients with acute small bowel obstruction. World J Surg. 2002;26(9): 1100-1105. [PMID: 12204120]"
+        },
+        "Hyponatremia": {
+            "sensitivity": 0.55,
+            "specificity": 0.15
+        }
+    }
+}
