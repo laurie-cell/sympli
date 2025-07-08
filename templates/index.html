@@ -46,7 +46,7 @@
       fetch('/api/order_test', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ test: 'WBC_Count' })  // You can change test name here
+        body: JSON.stringify({ test: 'CT_Scan' })  // You can change test name here
       })
         .then(res => res.json())
         .then(data => updateOutput(data))

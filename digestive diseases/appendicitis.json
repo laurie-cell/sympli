@@ -1,7 +1,7 @@
 {
-    "disease": "Appendicitis",
+    "name": "Appendicitis",
 
-    "prior": 0.5,
+    "prior": 0.3,
 
     "demographics": {
         "age": {"mean": 34.5, "std": 18.0},
@@ -36,6 +36,7 @@
 
     "diagnostic_tests": {
         "Abdominal_Ultrasound": {
+            "Binary": false,
             "Enlarged_Appendix": {
                 "sensitivity": 0.98,
                 "specificity": 0.92
@@ -44,7 +45,7 @@
                 "sensitivity": 0.98,
                 "specificity": 0.92
             },
-            "Peri-appendicieal_Fluid": {
+            "Peri-appendiceal_Fluid": {
                 "sensitivity": 0.96,
                 "specificity": 0.93
             },
@@ -58,6 +59,7 @@
             }
         },
         "CT_Scan": {
+            "Binary": false,
             "Enlarged_Appendix": {
                 "sensitivity": 0.84,
                 "specificity": 0.97
@@ -80,6 +82,7 @@
             }
         },
         "MRI": {
+            "Binary": false,
             "Enlarged_Appendix": {
                 "sensitivity": 0.90,
                 "specificity": 0.95
@@ -102,15 +105,18 @@
             }
         },
         "WBC_Count": {
+            "Binary": true,
             "sensitivity": 0.70,
             "specificity": 0.30
         },
         "CRP": {
+            "Binary": true,
             "sensitivity": 0.80,
             "specificity": 0.55,
             "source": "Andersson REB. The role of C-reactive protein in the diagnosis of acute appendicitis. Br J Surg. 2004;91(5): 954-962. [PMID: 15035166]"
         },
         "Hyponatremia": {
+            "Binary": true,
             "sensitivity": 0.35,
             "specificity": 0.15
         }

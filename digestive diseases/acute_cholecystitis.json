@@ -1,7 +1,7 @@
 {
-    "disease": "Acute Cholecystitis",
+    "name": "Acute Cholecystitis",
 
-    "prior": 0.5,
+    "prior": 0.1,
 
     "demographics": {
         "age": {"mean": 34.5, "std": 18.0},
@@ -35,6 +35,7 @@
 
     "diagnostic_tests": {
         "Abdominal_Ultrasound": {
+            "Binary": false,
             "Murphy's_Sign": {
                 "sensitivity": 0.63,
                 "specificity": 0.936,
@@ -57,6 +58,7 @@
             }
         },
         "CT_Scan": {
+            "Binary": false,
             "Tensile_Fundus_Sign": {
                 "sensitivity": 0.75,
                 "specificity": 0.95,
@@ -79,6 +81,7 @@
             }
         },
         "MRI": {
+            "Binary": false,
             "Pericholecystic_Fluid": {
                 "sensitivity": 0.91,
                 "specificity": 0.79,
@@ -91,15 +94,18 @@
             }
         },
         "WBC_Count": {
+            "Binary": true,
             "sensitivity": 0.70,
             "specificity": 0.30
         },
         "CRP": {
+            "Binary": true,
             "sensitivity": 0.775,
             "specificity": 0.575,
             "source": "Portincasa P et al. C-reactive protein: an early marker of inflammation in acute cholecystitis. Eur J Clin Invest. 1999;29(9): 785-792. [PMID: 10575846]"
         },
         "Hyponatremia": {
+            "Binary": true,
             "sensitivity": 0.05,
             "specificity": 0.05
         }
