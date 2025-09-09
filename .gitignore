@@ -1,13 +1,11 @@
-# OS / editor files
-.DS_Store
+# React
+/frontend/node_modules
+/frontend/build
+
+# Python
 __pycache__/
-*.pyc
-
-# Node / React
-node_modules/
-build/
-dist/
-
-# Python venv
 venv/
 .env
+
+# Mac
+.DS_Store

@@ -26,19 +26,6 @@ def ensure_session_id():
 
 DISEASE_TEMPLATES = load_case.load_disease_templates()
 
-# @app.route('/')
-# def home():
-#     """
-#     Renders index.html.
-#     """
-#     return render_template('index.html')
-
-
-# @app.route('/api/new_case', methods=['GET'])
-# def new_case():
-#     print("✅ /api/new_case was hit")
-#     return jsonify({"message": "It works!"})
-
 @app.route('/api/new_case', methods=['GET'])
 def new_case():
     """
@@ -56,20 +43,6 @@ def new_case():
     visible = {k: v for k, v in new_case.items() if k != "name"}
 
     return jsonify(visible)
-
-# @app.route('/api/current_case', methods=['GET'])
-# def get_current_case():
-#     session_id = 'test_user'
-#     print("🔍 Checking current case for session:", session_id)
-#     print("📦 All user cases:", user_cases)
-
-#     case = user_cases.get(session_id)
-#     if not case:
-#         print("❌ No case found for this session.")
-#         return jsonify({"error": "No case generated yet"}), 404
-
-#     visible = {k: v for k, v in case.items() if k != "name"}
-#     return jsonify(visible)
 
 
 @app.route('/api/current_case', methods=['GET'])
