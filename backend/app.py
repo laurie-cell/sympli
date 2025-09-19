@@ -75,8 +75,8 @@ def order_test():
 
     Returns JSON of {"test_name": test_name, "result": ("positive" or "negative")}
     """
-    session_id = session['session_id']
-    case = user_cases[session_id]
+    session_id = 'test_user'  # Use same session ID as new_case
+    case = user_cases.get(session_id)
     if not case:
         return jsonify({"error": "No case generated"}), 400
 
@@ -126,7 +126,7 @@ def submit_diagnosis():
 
     Returns JSON of {"correct": T/F, "submitted": user guess, "feedback": Correct/Incorrect + details}
     """
-    session_id = session['session_id']
+    session_id = 'test_user'  # Use same session ID as new_case
     current_case = user_cases.get(session_id)
     if not current_case:
         return jsonify({"error": "No case generated"}), 400
@@ -150,7 +150,7 @@ def reset_case():
     """
     Removes case associated with current session_id from user_cases.
     """
-    session_id = session['session_id']
+    session_id = 'test_user'  # Use same session ID as new_case
     user_cases.pop(session_id, None)
     return jsonify({"status": "case cleared"})
 

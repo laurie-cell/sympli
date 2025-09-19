@@ -2,17 +2,18 @@ import { useState } from "react";
 import ActionButton from "./components/ActionButton";
 import CaseDisplay from "./components/CaseDisplay";
 import DiagnosisForm from "./components/DiagnosisForm";
-import "bootstrap/dist/css/bootstrap.min.css";
-import { Container, Row, Col, Alert } from "react-bootstrap";
+import TestOrdering from "./components/TestOrdering";
+import AIFeedback from "./components/AIFeedback";
 import "./App.css"
 
 function App() {
   const [currentCase, setCurrentCase] = useState(null);
-  const [log, setLog] = useState([]);
+  const [lastDiagnosis, setLastDiagnosis] = useState(null);
+  const [diagnosisResult, setDiagnosisResult] = useState(null);
 
   const callBackend = async (endpoint, onSuccess, method="GET", body=null) => {
     try {
-      const res = await fetch(`http://127.0.0.1:5050/api/${endpoint}`, {
+      const res = await fetch(`http://127.0.0.1:5050/${endpoint}`, {
         method,
         headers: { "Content-Type": "application/json" },
         body: body? JSON.stringify(body) : null,
@@ -20,80 +21,116 @@ function App() {
       const data = await res.json();
       onSuccess(data);
     } catch (err) {
-      console.error("❌ Failed to fetch:", err);
-      setLog((prev) => [...prev, "❌ Failed to fetch"]);
+      console.error("Failed to fetch:", err);
     }
   };
 
+  const handleTestOrdered = (testResult) => {
+    callBackend("api/current_case", (data) => {
+      setCurrentCase(data);
+    });
+  };
+
   return (
-    <div class="container">
+    <div className="medical-container">
+      <div className="medical-header">
+        <h1>Sympli</h1>
+        <p>Advanced AI-powered tool for Bayesian medical case analysis</p>
+      </div>
 
-      <h1 style={{ marginTop: "20px", textAlign: "center" }}>Medical Simulator</h1>
+      <div className="left-panel">
+        <div className="medical-card">
+          <h3>Control Panel</h3>
+          <div style={{ display: 'flex', gap: '0.5rem', flexWrap: 'wrap' }}>
+            <ActionButton
+              label="New Case"
+              onClick={() =>
+                callBackend("api/new_case", (data) => {
+                  setCurrentCase(data);
+                  setLastDiagnosis(null);
+                  setDiagnosisResult(null);
+                })
+              }
+            />
+            <ActionButton
+              label="Load Case"
+              onClick={() =>
+                callBackend("api/current_case", (data) => {
+                  setCurrentCase(data);
+                })
+              }
+              variant="secondary"
+            />
+          </div>
+        </div>
 
-      <Row className="mb-3 justify-content-center">
-        <Col xs="auto">
-          <ActionButton
-            label="New Case"
-            onClick={() =>
-              callBackend("new_case", (data) => {
-                setCurrentCase(data);
-                setLog((prev) => [...prev, "New case loaded."]);
-              })
-            }
+        {currentCase && (
+          <CaseDisplay caseData={currentCase} />
+        )}
+      </div>
+
+      <div className="center-panel">
+        {currentCase && (
+          <TestOrdering
+            caseData={currentCase}
+            onTestOrdered={handleTestOrdered}
           />
-        </Col>
-      </Row>
+        )}
+      </div>
 
-      <Col xs="auto">
-          <ActionButton
-            label="Current Case"
-            onClick={() =>
-              callBackend("current_case", (data) => {
-                setCurrentCase(data);
-                setLog((prev) => [...prev, "Current case fetched."]);
-              })
-            }
-            variant = "secondary"
-          />
-      </Col>
+      <div className="right-panel">
+        {currentCase && (
+          <>
+            <DiagnosisForm
+              probabilities={currentCase.probabilities}
+              onSubmit={(diagnosis) =>
+                callBackend("submit_diagnosis", (data) => {
+                  setLastDiagnosis(diagnosis);
+                  setDiagnosisResult(data);
+                  console.log(`Diagnosis: ${diagnosis} - ${data.feedback}`);
+                }, "POST", { diagnosis })
+              }
+            />
 
-      <CaseDisplay caseData={currentCase} />
+            {lastDiagnosis && diagnosisResult && (
+              <>
+                <div className="medical-card">
+                  <h3>Diagnosis Result</h3>
+                  <div style={{
+                    padding: '0.5rem',
+                    borderRadius: '4px',
+                    border: `2px solid ${diagnosisResult.correct ? 'var(--success-color)' : 'var(--error-color)'}`,
+                    background: diagnosisResult.correct ? 'rgba(0, 255, 136, 0.1)' : 'rgba(255, 68, 68, 0.1)',
+                    textAlign: 'center'
+                  }}>
+                    <div style={{
+                      fontSize: '1rem',
+                      fontWeight: '600',
+                      color: diagnosisResult.correct ? 'var(--success-color)' : 'var(--error-color)',
+                      marginBottom: '0.25rem'
+                    }}>
+                      {diagnosisResult.correct ? '✅ CORRECT' : '❌ INCORRECT'}
+                    </div>
+                    <div style={{ fontSize: '0.8rem', color: 'var(--text-primary)' }}>
+                      Your diagnosis: <strong>{lastDiagnosis}</strong>
+                    </div>
+                    <div style={{ fontSize: '0.7rem', color: 'var(--text-secondary)', marginTop: '0.25rem' }}>
+                      {diagnosisResult.feedback}
+                    </div>
+                  </div>
+                </div>
 
-      <Row className="mt-4">
-        <Col>
-            <h4>Action Log</h4>
-            <div
-              id="logContainer"
-              style={{
-                maxHeight: "200px",
-                overflowY: "auto",
-                backgroundColor: "#f8f9fa",
-                padding: "10px",
-                border: "1px solid #ccc",
-                borderRadius: "5px",
-              }}
-            >
-              {log.map((entry, index) => (
-                <Alert key={index} variant="info">
-                  {entry}
-                </Alert>
-              ))}
-            </div>
-        </Col>
-      </Row>
-
-      {currentCase && (
-        <DiagnosisForm
-          probabilities={currentCase.probabilities}
-          onSubmit={(diagnosis) =>
-            callBackend(`submit_diagnosis/${encodeURIComponent(diagnosis)}`, (data) => {
-              setLog((prev) => [...prev, `Submitted diagnosis: ${diagnosis}`, JSON.stringify(data, null, 2)]);
-            },
-          "POST")
-          }
-        />
-      )}
-
+                <AIFeedback
+                  caseData={currentCase}
+                  diagnosis={lastDiagnosis}
+                  isCorrect={diagnosisResult.correct}
+                  onGetFeedback={(feedback) => console.log('AI Feedback:', feedback)}
+                />
+              </>
+            )}
+          </>
+        )}
+      </div>
     </div>
   );
 }

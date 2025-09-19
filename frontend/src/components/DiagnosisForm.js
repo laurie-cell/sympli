@@ -1,5 +1,4 @@
 import { useState } from "react";
-import { Form, Button, Row, Col } from "react-bootstrap";
 
 function DiagnosisForm({ probabilities, onSubmit }) {
     const [selectedDiagnosis, setSelectedDiagnosis] = useState("");
@@ -12,27 +11,36 @@ function DiagnosisForm({ probabilities, onSubmit }) {
     };
 
     return (
-        <Form onSubmit={handleSubmit} className="mt-4">
-            <Row className="align-items-center">
-                <Col xs="auto">
-                    <Form.Select
+        <div className="medical-card">
+            <h3>Final Diagnosis</h3>
+            <form onSubmit={handleSubmit}>
+                <div style={{ display: 'flex', gap: '0.5rem', alignItems: 'center', flexWrap: 'wrap' }}>
+                    <select
                         value={selectedDiagnosis}
                         onChange={(e) => setSelectedDiagnosis(e.target.value)}
+                        style={{ flex: '1', minWidth: '200px', fontSize: '0.8rem' }}
                     >
-                        <option value="">Select a diagnosis</option>
-                        {Object.keys(probabilities || {}).map((disease) => (
+                        <option value="">Select diagnosis</option>
+                        {Object.keys(probabilities || {})
+                            .sort((a, b) => (probabilities[b] || 0) - (probabilities[a] || 0))
+                            .map((disease) => (
                             <option key={disease} value={disease}>
-                                {disease}
+                                {disease} ({(probabilities[disease] * 100).toFixed(1)}%)
                             </option>
                         ))}
-                    </Form.Select>
-                </Col>
+                    </select>
 
-                <Col xs="auto">
-                    <Button type="submit" variant="success" disabled={!selectedDiagnosis}>Submit Diagnosis</Button>
-                </Col>
-            </Row>
-        </Form>
+                    <button
+                        type="submit"
+                        className="medical-btn medical-btn-success"
+                        disabled={!selectedDiagnosis}
+                        style={{ minWidth: '100px', fontSize: '0.7rem' }}
+                    >
+                        Submit
+                    </button>
+                </div>
+            </form>
+        </div>
     );
 }
 

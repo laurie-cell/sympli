@@ -1,15 +1,24 @@
-import "bootstrap/dist/css/bootstrap.min.css";
-import { Button } from "react-bootstrap";
-
 function ActionButton({ label, onClick, variant = "primary" }) {
+    const getButtonClass = () => {
+        switch (variant) {
+            case "secondary":
+                return "medical-btn medical-btn-secondary";
+            case "success":
+                return "medical-btn medical-btn-success";
+            case "warning":
+                return "medical-btn medical-btn-warning";
+            default:
+                return "medical-btn";
+        }
+    };
+
     return (
-        <Button
-            variant={variant}
+        <button
+            className={getButtonClass()}
             onClick={onClick}
-            className="me-2 mb-2"
         >
             {label}
-        </Button>
+        </button>
     )
 }
 
